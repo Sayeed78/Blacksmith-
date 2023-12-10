@@ -3,3 +3,4 @@ I started this project when I was early in my programing career and currently th
 python coding practices. 
 
 This is intended for recreational and learning purposes. I do not have any rights to this game. 
+![Scholar_dialog_flowchart](https://github.com/Sayeed78/Blacksmith-/assets/118777033/0d5bb8ae-ddd2-463e-bc09-e1b06fe6a860)
