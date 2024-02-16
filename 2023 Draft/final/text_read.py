@@ -24,6 +24,13 @@ def print_box_whitespace(message_length, box_length):
     spaces_to_add = box_length - message_length - 6  # Account for "| num. " in the box
     print(' ' * spaces_to_add + '|')
 
+
+
+########################################################################################################
+
+# These two methods read in text files and either print fast or print slowly. These may be/become 
+# obsolete.
+
 # This function reads a txt doc slowly line by line
 def read_line(file):
 	with open(file) as fp:

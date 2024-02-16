@@ -99,3 +99,23 @@ def choice_loop_secret():
 
 	
 ########################################################################################################
+
+# Below method is used to generate the secret menu and is used to see if the player
+# has gathered required items to progress the individual storylines. For the main menu, if the
+# the user has completed all other storylines, then the secret menu opens up unlocking the forth
+# and final storyline. 
+
+# This method might be able to reduced by using inventory.index(item).
+# However, further research shows that .index() assumes the item is there,
+# so if the item is not found a ValueError will occur. So the current
+# code is sufficent. 
+
+# Inventory check to show hidden blacksmith option and to check for items.
+def item_check(item):
+	check = 0
+	for line in inventory:
+		if line == str(item):
+			check = 1
+	return check
+
+################################################################################################
