@@ -1,4 +1,4 @@
-#! /usr/local/bin/python3
+ /usr/local/bin/python3
 # Legacy \users\Sohail Sayeed\AppData\local\Programs\python
 
 # This is the master copy for the game BlackSmith ported by Sohail Sayeed from the game Talos Principle, all rights reserved.
