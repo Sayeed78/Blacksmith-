@@ -11,7 +11,7 @@ import blacksmith_path
 
 #######################################################################################################
 
-class main:
+class Main:
         def __init__(self, items) -> None:
                 self.items = items
                 self.read = self.Read()

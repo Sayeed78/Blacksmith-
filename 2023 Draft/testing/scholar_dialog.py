@@ -72,222 +72,294 @@
 # Note there is only one choice here
 # W = Poets
 
-# 1. Poets / First Dialog ###############################################################################################
+work_dialog = {
 
+# Poets / First Dialog ###############################################################################################
 
-'You spend many days in the Library.'
+    'poets': [
+        'You spend many days in the Library.'
 
-'transcribing the work of the Ancient Poets.'
-'         You learn much'
-'         of thier dedication to the Sublime.'
+        'transcribing the work of the Ancient Poets.'
+        '         You learn much'
+        '         of their dedication to the Sublime.'
+        '                                           '
+        '                                           '
+        'Your work is interrupted by a young monk:'
+        '"Come, brother! You deserve a break. Let us sing the old songs." '
+        ''
+    ],  
 
-
-'Your work is interrupted by a young monk:'
-'"Come, brother! You deserve a break. Let us sing the old songs." '
-''
-,
-
-# CW = Philosophers
-# TB = Young Brothers Sing Old Songs As New -> Playwrights
+# CW = 'philosophers'
+# TB = 'old_songs'
 
 # Work Choices #######################################################################################################
 ############################################################################################################################
 
-# 2. Philosophers ###############################################################################################
+# 1. Philosophers ###############################################################################################
 
 
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Philosophers.'
-'         You learn much'
-'         of thier confusion.'
+    'philosophers':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Philosophers.'
+        '         You learn much'
+        '         of their confusion.'
+        '                                                   '
+        'Your work is interrupted by a young monk:'
+        '"Come, brother! We have opened a barrel of wine!" '
+    ],
 
-'Your work is interrupted by a young monk:'
-'"Come, brother! We have opened a barrel of wine!" '
+# CW = 'playwrights'
+# TB = 'dring_laugh'
 
-,
-# CW = Playwrights
-# TB = Young Brothers Drink Live Forever
+# 2. Playwrights ###############################################################################################
 
-# 3. Playwrights ###############################################################################################
+    'playwrights':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Playwrights.'
+        '         You learn much'
+        '         of the human paradox.'
+        '                                                   '
+        'Your work is interrupted by a monk:'
+        '"Come, brother! We have discovered a strange miricle!"'
+    ],
 
+# CW = 'engineers'
+# TB = 'small_animal'
 
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Playwrights.'
-'         You learn much'
-'         of of the human paradox.'
+# 3. Engineers ###############################################################################################
 
-'Your work is interrupted by a monk:'
-'"Come, brother! We have discovered a strange miricle!"'
+    'engineers':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Engineers'
+        '         You learn much''         of how the world was made.'
+        '                                                           '
+        'Your work is interrupted by a monk:'
+        '"Come, brother! Let us sing the old songs once more!"'
+    ],
+# CW = 'mystics'
+# TB = 'old_songs'
 
-,
-# CW = Engineers
-# TB = Brothers observe small animal blessed -> Mystics
+# 4. Mystics ###############################################################################################
 
-# 4. Engineers ###############################################################################################
-
-
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Engineers'
-'         You learn much''         of how the world was made.'
-
-'Your work is interrupted by a monk:'
-'"Come, brother! Let us sing the old songs once more!"'
-
-,
-# CW = Mystics
-# TB = Brothers Sing Old Songs Not Forgotten -> Geographers
-
-# 5. Mystics ###############################################################################################
-
-
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Mystics'
-'         You learn much'
-'         of what the ancients feared.'
-
-'Your work is interrupted by an old monk:'
-'"Come, brother! We have opened the last barrel of wine!"'
-
-,
-# CW = Geographers
-# TB = Old Brothers Drink End is Nigh -> Priests 
+    'mystics':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Mystics'
+        '         You learn much'
+        '         of what the ancients feared.'
+        '                                        '
+        'Your work is interrupted by an old monk:'
+        '"Come, brother! We have opened the last barrel of wine!"'
+    ],
+# CW = 'geographers'
+# TB = 'end_is_nigh'
 
 # 6. Geographers ###############################################################################################
 
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Geographers.'
-'         You learn much'
-'         of how the world changed.'
+    'geographers':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Geographers.'
+        '         You learn much'
+        '         of how the world changed.'
 
-'Your work is not interrupted.'
+        'Your work is not interrupted.'
+    ]
 
-,
-# CW = Priests 
-# TB = Kitches Are Empty
+# if only CW: then CW
+# else if: only TB: then TB
+# else: TB2
 
+# CW = 'priests'
+# TB = 'kitchens_empty'
+# TB2 = 'distracted'
+
+# TB = 'kitchens_empty'
+
+###############################################################################################################################
+
+}
 
 # Break Choices #######################################################################################################
 ###############################################################################################################################
 
+break_dialog = {
+
 # 1. Young Brothers sing old songs ###############################################################################################
 
-,
-'In the kitchens, the young brothers sing'
-'XXXXX                      the old songs'
-'XXXXX                      as if they were new.'
+    'old_songs':[
+        'In the kitchens, the young brothers sing'
+        'XXXXX                      the old songs'
+        'XXXXX                      as if they were new.'
+        '                                                   '
+        'Your spirit is renewed, but you lose precious time.'
+    ],
 
-'Your spirit is renewed, but you lose precious time.'
-
-,
-# CW = Playwrights
+# 'poets' -> here
+# CW = 'playwrights'
+# TB = 'drink_laugh'
 
 # 2. Young Brothers Drink and Laugh ###############################################################################################
 
-'In the kitchens, the young brothers drink'
-'XXXXX                           and laugh'
-'XXXXX                           as if they will live forever.'
+    'drink_laugh':[
+        'In the kitchens, the young brothers drink'
+        'XXXXX                           and laugh'
+        'XXXXX                           as if they will live forever.'
+        '                                                               '
+        'Your spirit is renewed, but you lose precious time.'
+    ],
 
-'Your spirit is renewed, but you lose precious time.'
-
-,
-# CW = Engineers
+# 'philophers' -> here
+# CW = 'engineers'
+# TB = 'small_animal'
 
 # 3. Brothers observe small animal blessed happiness ###############################################################################################
 
-'In the kitchens, the brothers observe       '
-'XXXXX                      a small animal       '
-'XXXXX                      that is blessed to bring happiness.'
+    'small_animal':[
+        'In the kitchens, the brothers observe       '
+        'XXXXX                      a small animal       '
+        'XXXXX                      that is blessed to bring happiness.'
+        '                                                              '
+        'Your spirit is renewed, but you lose precious time.'
+    ],
 
-'Your spirit is renewed, but you lose precious time.'
-
-,
-# CW = Mystics
+# 'playwright' -> here
+# CW = 'mystics'
+# TB = 'old_songs'
 
 # 4. Old Songs Not Forgotten ###############################################################################################
 
-'In the kitchens, the brothers sing'
-'XXXXX                the old songs'
-'XXXXX                that they have not forgotten.'
-
-'Your spirit is renewed, but you lose precious time.'
-
-,
-# Engineers -> here
-# CW = Geographers
+    'old_songs':[
+        'In the kitchens, the brothers sing'
+        'XXXXX                the old songs'
+        'XXXXX                that they have not forgotten.'
+        '                                                   '
+        'Your spirit is renewed, but you lose precious time.'
+    ],
+# 'engineers' -> here
+# CW = 'geographers'
+# TB = 'end_is_nigh'
 
 # 5. Old Brothers Drink End is Nigh ###############################################################################################
 
-'In the kitchens, the old brothers drink'
-'XXXXX                         and laugh'
-'XXXXX                          knowing the end is nigh.'
+    'end_is_nigh':[
+        'In the kitchens, the old brothers drink'
+        'XXXXX                         and laugh'
+        'XXXXX                         knowing the end is nigh.'
+        '                                                      '
+        'Your spirit is renewed, but you lose precious time.'
+    ],
 
-'Your spirit is renewed, but you lose precious time.'
+# CW = 'devoted'
+# TB = kitchens_empty
 
-,
-# CW = Priests
+# 7. Distracted ###############################################################################################
 
-# 6. Kitches Empty ###############################################################################################
+    'distracted':[
+        'You are distracted from your work.'
+        'thinking of your lost brothers'
+        '         You wonder about their lives'
+        '         and about your own.'
+        '         You wish you were apart of theirs.'
+        '                                           '
+        'You search for your brothers.'
+        'in the once bustling kitchens.'
+    ],
 
-'The kitchens are empty.'
-'XXXXX                  '
-'XXXXX                  '
+# TB = 'kitchens_empty'
 
-'You lose precious time.'
+# 7. Kitches Empty ###############################################################################################
 
-,
-# Geographers -> here
-# CW = Priests
+    'kitchens_empty':[
+        'The kitchens are empty.'
+        'XXXXX                  '
+        'XXXXX                  '
+
+        'You lose precious time.'
+    ],
+
+# 'geographers' -> here
+# if only TB: 'reminisce'
+# else: 'devoted'
+
+# 7. Not Devoted ###############################################################################################
+
+    'devoted':[
+        'Something is missing...'
+        'XXXXX                  all your work is lost'
+        'XXXXX                  all your brothers are gone'
+        '                                                 '
+        'You have not devoted yourself towards one goal.'
+    ],
+
+# Continue -> main_menu
+
+# 8. reminisce ###############################################################################################
+
+    'reminisce':[
+        'You reminisce on the life you once had...'
+        'on the choices you made...'
+        'XXXXX                the happy times were grandious'
+        'XXXXX                memories of your brothers are strong'
+        'XXXXX                the rewards experienced are undescribeable'
+        '                                                               '
+        'The memories of family bring you warmth and you are fullfiled.'
+        'The memories will bring you great joy in your next life.'
+        '                                                               '
+        'The Great Work remains unfinished.'
+    ]
+
+# Continue -> main_menu
 
 ################################################################################################
+
+}
+
 # Ending Dialogue Sequence ###############################################################################################
 
-# Geographers ###############################################################################################
+end_dialog = {
 
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Geographers.'
-'         You learn much'
-'         of how the world changed.'
-
-'Your work is not interrupted.'
-
-,
 # Preiests / Ending Sequence ###############################################################################################
 
-'You spend many days in the Library.'
-'transcribing the work of the Ancient Priests.'
-'         You learn much'
-'         of how the Word of God was lost.'
+    'priests':[
+        'You spend many days in the Library.'
+        'transcribing the work of the Ancient Priests.'
+        '         You learn much'
+        '         of how the Word of God was lost.'
 
-'Your have run out of wood for the furnance.'
-'                           It is very cold.'
+        'Your have run out of wood for the furnace.'
+        '                           You are frigid.'
+    ],
 
-,
-# CW = Cold Claims You
-# LW = Look For Wood
+# if player has axe: LWCM
+# else: LW
+# CW = 'cold_claims_you'
+# LW = 'look'
+# LWCM = 'look_cut'
 
 
 # Look For Wood ###############################################################################################
 
+    'look':[
+        'XX there is no more wood XX'
+        'XX nor an axe with which XX'
+        'XX to cut more           XX'
+    ],
 
-'XX there is no more wood XX'
-'XX nor an axe with which XX'
-'XX to cut more           XX'
-
-,
-# CW = Cold Claims You
+# CW = 'cold_claims_you'
 
 # Cold Claims You ###############################################################################################
 
+    'cold_claims_you':[
+        'You spend many days in the Library.'
+        'until the cold claims you.'
+        '         You learn much'
+        '         of regret.'
 
-'You spend many days in the Library.'
-'until the cold claims you.'
-'         You learn much'
-'         of regret.'
-
-'The Great Work remains unfinished.'
-
+        'The Great Work remains unfinished.'
+    ]
 
 # CW = restart
 # TB = restart 
 
 ################################################################################################
+
+}

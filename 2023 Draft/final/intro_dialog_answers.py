@@ -6,11 +6,6 @@
 
 # Below methods are for the inital start of the game.
 
-# This func creates the unacceptable answer prompt
-def wrong_answer():
-	print()
-	print("Sorry, that is not an accepteable answer.")
-
 # The starting portion of intro and first choice loop
 def begin():
 	g2g = 0
