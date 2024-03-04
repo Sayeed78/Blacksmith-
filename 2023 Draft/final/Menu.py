@@ -1,7 +1,7 @@
-import scholar_path
-import artist_path
-import scientist_path
-import blacksmith_path
+#from ArtistPath import ArtistPath
+#from BlacksmithPath import BlacksmithPath
+from ScholarPath import ScholarPath
+#from ScientistPath import ScientistPath
 
 
 # This file contains the prompts for the main menue of the game.
@@ -11,52 +11,20 @@ import blacksmith_path
 
 #######################################################################################################
 
-class Main:
+class Menu:
         def __init__(self, items) -> None:
                 self.items = items
                 self.read = self.Read()
-                self.db = self.DialogBox()
-                self.item = self.DialogPrompts()
-                self.dp = self.DialogPrompts()
-                self.scholar = scholar_path()
-                self.artist = artist_path()
-                self.scientist = scientist_path()
-                self.blacksmith = blacksmith_path()
+                self.secret = self.SecretMenu(self)
+                self.db = self.DialogBox(self)
+                self.dp = self.DialogPrompts(items, self)
+                self.scholar = ScholarPath(self)
+                self.artist = ArtistPath()
+                self.scientist = ScientistPath()
+                self.blacksmith = BlacksmithPath()
 
 
 #######################################################################################################
-
-# This Class makes the initial storylines, asks for player for a number and returns a string of it
-        class DialogBox:
-                def __init__(self) -> None:
-                        pass
-
-                # Below functions deal with creating text boxes and reading text
-                
-                @staticmethod       
-                def determine_box_length(message_length):
-                        return min(50, message_length + 7)  # Maximum box length is 50. Added 7 for "| num. " and some padding at the tail.
-                
-                @staticmethod
-                def print_box_top_bottom(length):
-                        print('-' * length)
-                
-                @staticmethod
-                def print_box_whitespace(message_length, box_length):
-                        spaces_to_add = box_length - message_length - 6  # Account for "| num. " in the box
-                        print(' ' * spaces_to_add + '|')
-
-                @staticmethod
-                def dialog(num, message):
-                        message = str(message)
-                        box_length = DialogBox.determine_box_length(len(message))
-                        DialogBox.print_box_top_bottom(box_length)
-                        print(f"| {num}. {message}", end='')
-                        DialogBox.print_box_whitespace(len(message), box_length)
-                        DialogBox.print_box_top_bottom(box_length)
-
-
-########################################################################################################
 
 # These two methods read in text files and either print fast or print slowly. These may be/become 
 # obsolete.
@@ -107,12 +75,46 @@ class Main:
                                 print(' --------------------------------------------------------------------------------')
 
 
+########################################################################################################
+
+# This Class makes the initial storylines, asks for player for a number and returns a string of it
+        class DialogBox:
+                def __init__(self, menu) -> None:
+                        self.menu = menu
+
+
+                # Below functions deal with creating text boxes and reading text                
+
+                @staticmethod       
+                def determine_box_length(message_length):
+                        return min(50, message_length + 7)  # Maximum box length is 50. Added 7 for "| num. " and some padding at the tail.
+                
+                @staticmethod
+                def print_box_top_bottom(length):
+                        print('-' * length)
+                
+                @staticmethod
+                def print_box_whitespace(message_length, box_length):
+                        spaces_to_add = box_length - message_length - 6  # Account for "| num. " in the box
+                        print(' ' * spaces_to_add + '|')
+
+                @staticmethod
+                def dialog(self, num, message):
+                        message = str(message)
+                        box_length = self.determine_box_length(len(message))
+                        self.print_box_top_bottom(box_length)
+                        print(f"| {num}. {message}", end='')
+                        self.print_box_whitespace(len(message), box_length)
+                        self.print_box_top_bottom(box_length)
+
+
 ############################################################################################################
 
         class DialogPrompts:
                 def __init__(self, item, main) -> None:
                         self.item = item
-                        self.db = DialogBox()
+                        self.main = main
+                        self.db = main.db
                         
 
                 # This func creates the unacceptable answer prompt

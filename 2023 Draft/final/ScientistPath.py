@@ -2,7 +2,7 @@
 
 class ScientistPath:
         def __init__(self):
-                self.name = 'Scientist
+                self.name = 'Scientist'
 
 # The Scientist story line
 def scientist():

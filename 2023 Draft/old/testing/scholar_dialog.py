@@ -1,5 +1,8 @@
 # Scholar_Dialog for Draft
 
+class Scholar_Dialog:
+    def __init__(self) -> None:
+        pass
 
 # List of dialog tree ###############################################################################################
 # Looks like each dialog is in an array and when TB is taken, the next index is skipped ie. i += 1
@@ -35,40 +38,42 @@
 
 # Prologue 1 ################################################################################################
 
-'XXXXXXXXXXXXXXXXXXXXXXXXXX'
-'XX THE BLOOD OF SCHOLARS X'
-'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+    prologue_dialog = {
+        
+        'prologue':[
+            'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+            'XX THE BLOOD OF SCHOLARS X'
+            'XXXXXXXXXXXXXXXXXXXXXXXXXX'
 
-'X SHALL OUTWEIGTH XXXXXXXX'
-'XXXXXXXXXXXXXXXXXXXXXXXXXX'
-'XX THE BLOOD OF MARTYRS XX'
-'XXXXXXXXXXXXXXXXXXXXXXXXXX'
-
-
-'You are Arkady'
-'        the Scholar'
-
-'        the Chronicler'
-
-'        the Sage'
-''
-
-'XX The world has been consumed by ice. XXXX'
-
-'XX In the Last Monastery XXXXXXXXXXXXXXXXXX'
-
-'XX of the land of Faith, XXXXXXXXXXXXXXXXXX'
-
-'XX you complete the thoughts of the dead XX'
-
-'XXXXXXX that God might know who they were X,'
+            'X SHALL OUTWEIGTH XXXXXXXX'
+            'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+            'XX THE BLOOD OF MARTYRS XX'
+            'XXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 
-'The hazy ghost of Weariness is always upon you, breaking your will. '
-'You fear that you may fail before the Great Work is finished.'
+            'You are Arkady'
+            '        the Scholar'
 
-,
+            '        the Chronicler'
 
+            '        the Sage'
+            ''
+
+            'XX The world has been consumed by ice. XXXX'
+
+            'XX In the Last Monastery XXXXXXXXXXXXXXXXXX'
+
+            'XX of the land of Faith, XXXXXXXXXXXXXXXXXX'
+
+            'XX you complete the thoughts of the dead XX'
+
+            'XXXXXXX that God might know who they were X,'
+
+
+            'The hazy ghost of Weariness is always upon you, breaking your will. '
+            'You fear that you may fail before the Great Work is finished.'
+        ]
+    }
 # Note there is only one choice here
 # W = Poets
 

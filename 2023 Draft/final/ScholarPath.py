@@ -3,10 +3,11 @@
 # This section is for Scholar storyline 
 #################################################################################################
 
-class scholar_path:
-        def __init__(self) -> None:
-                self.db = Main.DialogBox()
-                self.dp = Main.DialogPrompts()
+class ScholarPath:
+        def __init__(self, main) -> None:
+                self.main = main
+                self.db = main.DialogBox(main)
+                self.dp = main.DialogPrompts(self)
 
 
         # Helper function to pause text as it is printed. This is used with scholar_text() to slowly
