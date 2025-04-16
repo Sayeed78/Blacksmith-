@@ -1,0 +1,28 @@
+'You spend many days in the Library.'
+
+'transcribing the work of the Ancient Poets.'
+'         You learn much'
+'         of their dedication to the Sublime.'
+
+
+'Your work is interrupted by a young monk:'
+'"Come, brother! You deserve a break. Let us sing the old songs." '
+''
+|
+
+'You spend many days in the Library.'
+'transcribing the work of the Ancient Philosophers.'
+'         You learn much'
+'         of their confusion.'
+
+'Your work is interrupted by a young monk:'
+'"Come, brother! We have opened a barrel of wine!" '
+|
+
+'You spend many days in the Library.'
+'transcribing the work of the Ancient Playwrights.'
+'         You learn much'
+'         of of the human paradox.'
+
+'Your work is interrupted by a monk:'
+'"Come, brother! We have discovered a strange miracle!"'

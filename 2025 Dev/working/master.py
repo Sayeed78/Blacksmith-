@@ -1,0 +1,706 @@
+ /usr/local/bin/python3
+# Legacy \users\Sohail Sayeed\AppData\local\Programs\python
+
+# This is the master copy for the game BlackSmith ported by Sohail Sayeed from the game Talos Principle, all rights reserved.
+
+########################################################################################################
+
+#Notes: It is possible to turn some of these frequent funcions into modules so they become easily importable to any file.
+
+# Below functions deal with creating text boxs and reading text
+
+# This following three functions create the dialog box and the dialog box length
+# This Function makes dialog box extend based on length of string
+def dialog(num, message):
+        message = str(message)
+        number_spaces = len(list(message))
+        dialog_box_length(number_spaces)
+        print("|",num, ".", message, end = '')
+        dialog_box_whitespace(number_spaces)
+        dialog_box_length(number_spaces)
+
+# This makes the top/bottom of the box
+def dialog_box_length(number_spaces):
+        if number_spaces < 23:
+                print('--------------------------')
+
+        else:
+                print('-------------------------------------------------------------------')
+
+# This func deals with the whitespace the box and appropriates its length
+def dialog_box_whitespace(number_spaces):
+        if number_spaces < 23:
+                while number_spaces  != 19:
+                        print(' ', end = '')
+                        number_spaces += 1
+        else:
+                while number_spaces != 60:
+                        print(' ',end = '')
+                        number_spaces += 1
+        print('|')
+
+# This function reads a txt doc slowly line by line
+def read_line(file):
+	with open(file) as fp:
+		line = fp.readline()
+		cnt = 1
+		print(' --------------------------------------------------------------------------------')
+		while line:
+			print("| {}".format(line.strip()))
+			line = fp.readline()
+			if cnt <= 2:
+				time.sleep(1)
+			elif  cnt == 3:
+				 time.sleep(2)
+			elif cnt == 8:
+				time.sleep(3.5)
+			else:
+				time.sleep(1)
+			cnt += 1
+		print(' --------------------------------------------------------------------------------')
+
+# This function reads a txt doc line by line fast
+def read_line_fast(file):
+	with open(file) as fp:
+		line = fp.readline()
+		cnt = 1
+		print(' --------------------------------------------------------------------------------')
+		while line:
+			print("| {}".format(line.strip()))
+			line = fp.readline()
+			if cnt <= 2:
+				time.sleep(.5)
+			elif  cnt == 3:
+				 time.sleep(.5)
+			elif cnt == 9:
+				time.sleep(1.5)
+			else:
+				time.sleep(.5)
+			cnt += 1
+		print()
+		print(' --------------------------------------------------------------------------------')
+
+
+############################################################################################################
+
+
+# This func creates the unacceptable answer prompt
+def wrong_answer():
+	print()
+	print("Sorry, that is not an accepteable answer.")
+
+# Continue/Exit ending screen
+def continue_exit():
+        dialog(1, '[Continue]')
+        dialog(2, '[Exit]')
+        answer = int(input('Choice?: '))
+        if answer == 1:
+                player_choices()
+        elif answer == 2:
+                exit
+        else:
+                wrong_answer()
+                return continue_exit()
+# The starting portion of intro and first choice loop
+def begin():
+	g2g = 0
+	answer = input('Begin? y or n: ')
+	while g2g != 1:
+		if answer == 'n':
+			print()
+			print('You awake from your dream.')
+			print()
+			exit()
+		elif answer == 'y':
+			g2g=1
+			print()
+			print(' --------------')
+			print('| Begin Vision |')
+			print(' --------------')
+		else:
+			wrong_answer()
+			g2g = 1
+			return begin()
+
+# Func goes through remember/dialog loop
+def remember():
+	g2g = 0
+	answer = input('Remember? y or n: ')
+	while g2g != 1:
+		if answer == 'n':
+			g2g = 1
+			return remember()
+		elif answer == 'y':
+			g2g = 1
+		else:
+			g2g = 1
+			wrong_answer()
+			return remember()
+
+# Func goes through dream/dialog loop
+def dream():
+        g2g = 0
+        answer = input('Dream? y or n: ')
+        while g2g != 1:
+                if answer == 'n':
+                        g2g = 1
+                        return dream()
+                elif answer == 'y':
+                        g2g = 1
+                else:
+                        g2g = 1
+                        wrong_answer()
+                        return dream()
+
+#######################################################################################################
+# Break from into to player choices
+
+# This func makes the initial storylines, asks for player for a number and returns a string of it
+# This fucn is used by 'choice = player_choices()'
+def player_choices():
+        dialog(1, 'The Scholar')
+        dialog(2, 'The Artist')
+        dialog(3, 'The Scientist')
+        dialog(4, 'Exit')
+        print()
+        choice = str(input('Choice? (only enter a single number): '))
+        return choice
+
+# Takes choice from above func, loops if its an acceptable answer, and returns the storyline function
+def player_answers(choice):
+        if choice == '1':
+                return artist()
+        elif choice == '2':
+                return scholar()
+        elif choice == '3':
+                return scientist()
+        elif choice == '4':
+                exit()
+        else:
+                wrong_answer()
+                print()
+                return player_choices()
+        
+# Func Allows for a choice loop
+def choice_loop():
+        choice = player_choices() 
+        if choice == '1':
+                print('NORMAL')
+                return player_answers(choice)
+        
+        elif choice == '2':
+                return player_answers(choice)
+        
+        elif choice == '3':
+                return player_answers(choice)
+        
+        elif choice == '4':
+                return player_answers(choice)
+        
+        else:       
+                wrong_answer()
+                return choice_loop()
+
+# Below code is for the secret player choices/answers
+
+# This func makes the secret character choices
+def player_choices_secret():
+        dialog(1, 'The Scholar')
+        dialog(2, 'The Artist')
+        dialog(3, 'The Scientist')
+        dialog(4, 'The Blacksmith')
+        dialog(5, 'Exit')
+        print()
+        choice = str(input('Choice? (only enter single number): '))
+        print()
+        return(choice)
+
+# Character answers with secret
+def player_answers_secret(choice):
+	count = 0
+	if choice == '1':
+		artist()
+	elif choice == '2':
+		scholar()
+	elif choice == '3':
+		scientist()
+	elif choice == '4':
+		blacksmith()
+	elif choice == '5':
+		exit()
+	else:
+		wrong_answer()
+		print()
+		return player_choices_secret()
+	
+# Func Allows for a choice loop but for secret path
+def choice_loop_secret():
+        if choice == ('1' or '2' or '3' or '4'):
+                choice = player_choices_secret()
+                print('SECRET')
+                return player_answers_secret(choice)
+        else:       
+                wrong_answer()
+                return choice_loop_secret()
+
+	
+########################################################################################################
+
+# This Func might be able to reduced by using inventory.index(item)
+
+# Inventory check to show hidden blacksmith option
+def item_check(item):
+	check = 0
+	for line in inventory:
+		if line == str(item):
+			check += 1
+	return check
+
+################################################################################################
+
+
+
+#################################################################################################
+# This section is for scholar storyline 
+
+# This Is the Scholar txt for the scholar path, there is a sepereate text file that may be used instead
+def scholar_text():
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('XX THE BLOOD OF SCHOLARS X')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXX')
+        #time.sleep(2)
+        print('X SHALL OUTWEIGTH XXXXXXXX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('XX THE BLOOD OF MARTYRS XX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print()
+        #time.sleep(2)
+        print('You are Arkady')
+        #time.sleep(.5)
+        print('        the Scholar')
+        #time.sleep(.5)
+        print('        the Chronicler')
+        #time.sleep(.5)
+        print('        the Sage')
+        print('')
+        #time.sleep(1)
+        print('XX The world has been consumed by ice. XXXX')
+        #time.sleep(1)
+        print('XX In the Last Monastery XXXXXXXXXXXXXXXXXX')
+        #time.sleep(1)
+        print('XX of the land of Faith, XXXXXXXXXXXXXXXXXX')
+        #time.sleep(1)
+        print('XX you complete the thoughts of the dead XX')
+        #time.sleep(1)
+        print('XXXXXXX that God might know who they were X,')
+        #time.sleep(1)
+        print()
+        print('The hazy ghost of Weariness is always upon you, breaking your will. ')
+        print('You fear that you may fail before the Great Work is finished.')
+        print()
+        
+
+
+
+# Func goes through y/n work loop
+def work():
+        g2g = 0
+        dialog(1, 'Work')
+        print()
+        answer = input('Choice?: ')
+        while g2g != 1:
+                if answer == '1':
+                        g2g = 1
+                        return answer
+                elif answer == '1':
+                        g2g = 1
+                else:
+                        g2g = 1
+                        wrong_answer()
+                        return work()
+
+# Func creates contiune working segment break
+def cont_work():
+        dialog(1, 'Continue working')
+        print()
+        answer = input('You must keep working ')
+        return answer
+
+# Func goes through work/break dialog loop
+def work_break():
+        g2g = 0
+        dialog(1, 'Continue working')
+        dialog(2, 'Take a break')
+        print()
+        answer = input('Choice? ')
+        if answer == '1' or '2':
+                return answer
+                print()
+        else:
+                wrong_answer()
+                return work_break()
+
+# Func goes through work/look for wood dialog tree
+def work_wood():
+        dialog(1, 'Continue working')
+        dialog(2, 'Look for wood')
+        print()
+        answer = input('Choice? ')
+        if answer == '1':
+                print()
+        elif answer == '2':
+                if item_check(axe) != 1:
+                               print('XX there is no more wood XX')
+                               print('XX nor an axe with which XX')
+                               print('XX to cut more           XX')
+                               print()
+                               cont_work()
+                       
+                       
+                else:
+                        wrong_answer()
+                        return work_wood()
+
+# Great Work unfinished ending Function
+def work_unfinished():
+        print('You spend many days in the Library,')
+        print('until the cold claims you.')
+        print('     You learn much')
+        print('     of regret.')
+        print()
+        print('The Great Work remains unfinished.')
+        print()
+                       
+# This pulls up the scholar path of the game
+# A list is created to determine choices 
+def scholar():
+        # Even numbers in list are work text, odds are break text
+        List = [0,1,2,3,4,5,6,7,8,9,10]
+        Work_list = [0,2,4,6,8,10]
+        Break_List = [1,3,5,7,9]
+        work_break_results = 0
+        scholar_text()
+#        read_line_fast("scholar.txt")
+        work()
+        print()
+        print('You spend many days in the Library.')
+        #time.sleep(.5)
+        print('transcribing the work of the Ancient Poets.')
+        print('         You learn much')
+        print('         of thier dedication to the Sublime.')
+        #time.sleep(.5)
+        print()
+        print('Your work is interrupted by a young monk:')
+        print('"Come, brother! You deserve a break. Let us sing the old songs." ')
+        print('')
+        answer = work_break()
+        if answer == '1':
+                work_choice_results += 1
+                print('You spend many days in the Library.')
+                print('transcribing the work of the Ancient Philosophers.')
+                print('         You learn much')
+                print('         of thier confusion.')
+                print()
+                print('Your work is interrupted by a young monk:')
+                print('"Come, brother! We have opened a barrel of wine!" ')
+                print()
+                work_break()
+                if answer == '2':
+                        print('In the kitchens, the young brothers drink')
+                        print('XXXXX                           and laugh')
+                        print('XXXXX                           as if they will live forever.')
+                        print()
+                        print('Your spirit is renewed, but you lose precious time.')
+                        print()
+                        work_break()
+                        if answer == '2':
+                                print('You spend many days in the library,')
+                                print('transcribing the work of the Ancient Engineers.')
+                                print('         You learn much')
+                                print('         of how the world was made.')
+                                print()
+                                print('Your work is interrupted by a monk:')
+                                print('Come, brother! Let us sing the old songs once more!')
+                                print()
+                                if answer == '2':
+                                        print('In the kitchens, the brothers sing')
+                                        print('XXXXX                the old songs')
+                                        print('XXXXX                that they have not forgotten.')
+                                        print()
+                                        print('Your spirit is renewed, but you lose precious time.')
+                                        print()
+                                        work()
+                                        if answer == '2':
+                                                print('In the kitchens, the young brothers drink')
+                                                print('XXXXX                           and laugh')
+                                                print('XXXXX                           as if they will live forever.')
+                                                print()
+                                                print('Your spirit is renewed, but you lose precious time.')
+                                                print()
+                                                cont_work()
+                                                print('You spend many days in the Library.')
+                                                print('transcribing the work of the Ancient Geographers.')
+                                                print('         You learn much')
+                                                print('         of how the world changed.')
+                                                print()
+                                                print('Your work is not interrupted.')
+                                                print()
+                                                work_break()
+                                                if answer == '2':
+                                                        print('The kitchens are empty.')
+                                                        print('XXXXX                  ')
+                                                        print('XXXXX                  ')
+                                                        print()
+                                                        print('You lose precious time.')
+                                                        print()
+                                                        cont_work()
+                                                        print('You spend many days in the Library.')
+                                                        print('transcribing the work of the Ancient Priests.')
+                                                        print('         You learn much')
+                                                        print('         of how the Word of God was lost.')
+                                                        print()
+                                                        print('Your have run out of wood for the furnance.')
+                                                        print('                           It is very cold.')
+                                                        print()
+
+        
+        elif answer == '2':
+                print()
+                
+        print('In the kitchens, the young brothers sing       ')
+        print('XXXXX                      the old songs       ')
+        print('XXXXX                      as if they were new.')
+        print()
+        print('Your spirit is renewed, but you lose precious time.')
+        print()
+        cont_work()
+        print()
+        print('You spend many days in the Library.')
+        print('transcribing the work of the Ancient Playwrights.')
+        print('         You learn much')
+        print('         of of the human paradox.')
+        print()
+        print('Your work is interrupted by a monk:')
+        print('"Come, brother! We have discovered a strange miricle!"')
+        print()
+        answer = work_break()
+        if answer == '1':
+                work_choice_results += 1
+                print('You spend many days in the Library.')
+                print('transcribing the work of the Ancient Engineers')
+                print('         You learn much')
+                print('         of how the world was made.')
+                print()
+                print('Your work is interrupted by a monk:')
+                print('"Come, brother! Let us sing the old songs once more!"')
+                print()
+                work_break()
+                if answer == '1':
+                        work_choice_results += 1
+                        print('You spend many days in the Library.')
+                        print('transcribing the work of the Ancient Mystics')
+                        print('         You learn much')
+                        print('         of what the ancients feared.')
+                        print()
+                        print('Your work is interrupted by an old monk:')
+                        print('"Come, brother! We have opened the last barrel of wine!"')
+                        print()
+                        work_break()
+                        if answer == '1':
+                                work_choice_results += 1
+                                print('You spend many days in the Library.')
+                                print('transcribing the work of the Ancient Geographers')
+                                print('         You learn much')
+                                print('         of how the world changed.')
+                                print()
+                                print('Your work is not interrupted.')
+                                print()
+                                work_break()
+                                if answer == '1':
+                                        work_choice_results += 1
+                                        print('You spend many days in the Library.')
+                                        print('transcribing the work of the Ancient Priests')
+                                        print('         You learn much')
+                                        print('         of how the Word of God was lost.')
+                                        print()
+                                        print('You have run out of wood for the furnance.')
+                                        print('                          It is very cold.')
+                                        print()
+                                        work_wood()
+                        
+                                                        
+        elif answer == '2':
+                print('In the kitchens, the brothers observe       ')
+                print('XXXXX                      a small animal       ')
+                print('XXXXX                      that is blessed to bring happiness.')
+                print()
+                print('Your spirit is renewed, but you lose precious time.')
+                print()
+                work()
+        print
+############################################################################################################
+
+# The Artist story line
+def artist():
+        print(' The Artist')
+        return 2
+
+############################################################################################################
+
+# The Scientist story line
+def scientist():
+        print('XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('XX THE TRUE METHOND XXXXX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('XXXX OF KNOWLEDGE XXXXXXX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('XXXX EXPERIMENT XXXXXXXXX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print()
+        print('You are Alexandra')
+        print('        the Scientest')
+        print('        whose curse & blessing is the Truth')
+        print()
+        print('There is no more life. Only the sands move in the Land of Death.')
+        print()
+        print('But there is hope:')
+        print('       where this tomb')
+        print('       is hidden the seed')
+        print('       of the TREE OF LIFE')
+        print()
+        print('The hazy ghost of Weariness is always upon you, breaking your will.')
+        print('You fear that tyou may fail before the Great Work is finished.')
+        print()
+        #dialog(1, 'Seek The Seed of Life')
+        print()
+        print('      XX')
+        #time.sleep(.2)
+        print('    XXXXXX')
+        #time.sleep(.2)
+        print('  XXXXXXXXXX')
+        #time.sleep(.2)
+        print('XXXXXXXXXXXXXX')
+        #time.sleep(.2)
+        print()
+        print('NONE WHO DESCEND INTO THIS TOMB SHALL RETURN')
+        print()
+        dialog(1,'ENTER THE TOMB')
+        print()
+        print('XXXXXXX Stairs lead down')
+        print('XXXXXXXXXXXXXXX to the dark chambers')
+        print('XXXXXXXXXXXXXXXXXXXXXXX in the heart of the Earth')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX where the Seed awaits the Light')
+        print()
+        dialog(1, "Enter the Sage's Chamber")
+        dialog(2,'Descend')
+        ans = int(input('?: '))
+        if ans == 1:
+                print()
+                print('The ghost of the Ancien Sage speaks.')
+                print()
+                print('I have beheld the wonders of the cosomos:')
+                print('                          the fire of a million suns')
+                print('                          the wind amoungst the starts')
+                print('                          the black silence between the worlds')
+                print('and now my heart is full o9f fear')
+                print('for I know:')
+                print('           the world was not made for us.')
+                print()
+                dialog(1, Descend)
+                input('Decend?: ')
+        return 3
+
+############################################################################################################
+
+# The Blacksmith
+def blacksmith():
+        print('The Blacksmith')
+        return 4
+
+############################################################################################################
+
+
+####################################################################################################################        
+
+import time
+inventory = []
+print()
+print()
+print()
+print(' ------------------ ')
+print('| Close your eyes. |')
+print(' ------------------ ')
+#time.sleep(3)
+print()
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+print('     X               X      ')
+print('    X X  JERUSALEM  X X     ')
+print('     X               X      ')
+print('A VISION OF THE ETERNAL CITY')
+print('   XX XXXXXXXXXXXXXXX XXX   ')
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+print()
+#begin()
+#time.sleep(.5)
+print('.')
+#time.sleep(1.5)
+print ('..')
+#time.sleep(1.5)
+print('...')
+#time.sleep(1.5)
+print('....')
+#time.sleep(1.5)
+print()
+#read_line("intro.txt")
+#time.sleep(5)
+print()
+#remember()
+print()
+print(' ---------- ')
+print('| Remember |')
+print(' ---------- ')
+print()
+#time.sleep(2)
+#read_line("intro2.txt")
+#time.sleep(6)
+print()
+#dream()
+print()
+print(' --------- ')
+print('|  Dream  |')
+print(' --------- ')
+print()
+#time.sleep(2)
+print('....')
+#time.sleep(.5)
+print('...')
+#time.sleep(.5)
+print('..')
+#time.sleep(.5)
+print('.')
+#time.sleep(1.5)
+print()
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+#time.sleep(.75)
+print('This is the dream of the giant ANTHROPOS     ')
+#time.sleep(.75)
+print('    whose body lies in the ruins of Jerusalem')
+#time.sleep(.75)
+print('    awaiting the day of awakening            ')
+#time.sleep(.75)
+print()
+#time.sleep(.75)
+print('                      This is your journey.  ')
+print()
+# Below code in yellow is for test purposes
+#print(inventory)
+#inventory.append('coin')
+#print(inventory)
+check = item_check('coin')
+#print(check,'CHECK')
+if check == 1:
+        choice_loop_secret()
+else:
+        choice_loop()
+        
+
